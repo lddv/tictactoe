@@ -52,6 +52,7 @@
 						alert('Illegal!!!');
 						return;
 					}
+					checkWin();
 					robotRandomPlay();
 				});
 
@@ -78,6 +79,83 @@
 						$('.activitylog').append('<p>Robot choice: slot '+index+'</p>');
 					} else {
 						console.log('no more space');
+					}
+				}
+
+				function checkWin(){
+					checkRowWin();
+					checkColumnWin();
+					checkDiagonalWin();
+				}
+
+				function checkRowWin(){
+					var winner = 0;
+					if (slots[0] == slots[1] && slots[1] == slots[2]) {
+						winner = slots[0];
+						if (winner == 1) {
+							alert('Player wins at line 1!');
+						} else if (winner == 2) {
+							alert('ROBOT wins at line 1!');
+						}
+					} else if (slots[3] == slots[4] && slots[4] == slots[5]) {
+						winner = slots[3];
+						if (winner == 1) {
+							alert('Player wins at line 2!');
+						} else if (winner == 2) {
+							alert('ROBOT wins at line 2!');
+						}
+					} else if (slots[6] == slots[7] && slots[7] == slots[8]) {
+						winner = slots[6];
+						if (winner == 1) {
+							alert('Player wins at line 3!');
+						} else if (winner == 2) {
+							alert('ROBOT wins at line 3!');
+						}
+					}
+				}
+
+				function checkColumnWin(){
+					var winner = 0;
+					if (slots[0] == slots[3] && slots[3] == slots[6]) {
+						winner = slots[0];
+						if (winner == 1) {
+							alert('Player wins at column 1!');
+						} else if (winner == 2) {
+							alert('ROBOT wins at column 1!');
+						}
+					} else if (slots[1] == slots[4] && slots[4] == slots[7]) {
+						winner = slots[1];
+						if (winner == 1) {
+							alert('Player wins at column 2!');
+						} else if (winner == 2) {
+							alert('ROBOT wins at column 2!');
+						}
+					} else if (slots[2] == slots[5] && slots[5] == slots[8]) {
+						winner = slots[2];
+						if (winner == 1) {
+							alert('Player wins at column 3!');
+						} else if (winner == 2) {
+							alert('ROBOT wins at column 3!');
+						}
+					}
+				}
+
+				function checkDiagonalWin(){
+					var winner = 0;
+					if (slots[0] == slots[4] && slots[4] == slots[8]) {
+						winner = slots[0];
+						if (winner == 1) {
+							alert('Player wins at main diagonal from upper left to bottom right!');
+						} else if (winner == 2) {
+							alert('ROBOT wins at main diagonal from upper left to bottom right!');
+						}
+					} else if (slots[2] == slots[4] && slots[4] == slots[6]) {
+						winner = slots[2];
+						if (winner == 1) {
+							alert('Player wins at secondary diagonal from upper right to bottom left!');
+						} else if (winner == 2) {
+							alert('ROBOT wins at secondary diagonal from upper right to bottom left!');
+						}
 					}
 				}
 
