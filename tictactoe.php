@@ -7,7 +7,7 @@
 				height: 132px;
 			}
 			.content {
-				padding-top: 100px;
+				padding-top: 20px;
 			}
 		</style>
 		<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
@@ -16,22 +16,25 @@
 		<div align="center" class="content">
 			<table>
 				<tr>
-					<td class="casa" id="casa0">0</td>
-					<td class="casa" id="casa1">1</td>
-					<td class="casa" id="casa2">2</td>
+					<td class="casa" id="casa0"></td>
+					<td class="casa" id="casa1"></td>
+					<td class="casa" id="casa2"></td>
 				</tr>
 				<tr>
-					<td class="casa" id="casa3">3</td>
-					<td class="casa" id="casa4">4</td>
-					<td class="casa" id="casa5">5</td>
+					<td class="casa" id="casa3"></td>
+					<td class="casa" id="casa4"></td>
+					<td class="casa" id="casa5"></td>
 				</tr>
 				<tr>
-					<td class="casa" id="casa6">6</td>
-					<td class="casa" id="casa7">7</td>
-					<td class="casa" id="casa8">8</td>
+					<td class="casa" id="casa6"></td>
+					<td class="casa" id="casa7"></td>
+					<td class="casa" id="casa8"></td>
 				</tr>
 			</table>
-			<img src="o-128.jpg">
+		</div>
+
+		<div class="activitylog">
+			<p>Let the game begin!</p>
 		</div>
 
 		<script type="text/javascript">
@@ -44,6 +47,7 @@
 						// OK;
 						slots[i] = 1;
 						$(this).html('<img src="x-128.png">');
+						$('.activitylog').append('<p>Player choice: slot '+i+'</p>');
 					} else {
 						alert('Illegal!!!');
 						return;
@@ -71,6 +75,7 @@
 						console.log('random = '+index);
 						console.log('slots = '+slots);
 						$('#casa'+index).html('<img src="o-128.jpg">');
+						$('.activitylog').append('<p>Robot choice: slot '+index+'</p>');
 					} else {
 						console.log('no more space');
 					}
