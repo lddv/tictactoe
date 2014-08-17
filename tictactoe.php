@@ -52,8 +52,11 @@
 						alert('Illegal!!!');
 						return;
 					}
-					checkWin();
-					robotRandomPlay();
+
+					if (checkWin() == 0) {
+						robotRandomPlay();
+						checkWin();
+					}
 				});
 
 				function robotRandomPlay(){
@@ -83,9 +86,14 @@
 				}
 
 				function checkWin(){
-					checkRowWin();
-					checkColumnWin();
-					checkDiagonalWin();
+					var win = 0;
+					win += checkRowWin();
+					win += checkColumnWin();
+					win +=checkDiagonalWin();
+					if ((win == 0) && ($.inArray(0,slots) == -1)) {
+						$('.activitylog').append('<p>IT IS A DRAW!</p>');
+					}
+					return win;
 				}
 
 				function checkRowWin(){
@@ -94,24 +102,31 @@
 						winner = slots[0];
 						if (winner == 1) {
 							alert('Player wins at line 1!');
+							return winner;
 						} else if (winner == 2) {
 							alert('ROBOT wins at line 1!');
+							return winner;
 						}
 					} else if (slots[3] == slots[4] && slots[4] == slots[5]) {
 						winner = slots[3];
 						if (winner == 1) {
 							alert('Player wins at line 2!');
+							return winner;
 						} else if (winner == 2) {
 							alert('ROBOT wins at line 2!');
+							return winner;
 						}
 					} else if (slots[6] == slots[7] && slots[7] == slots[8]) {
 						winner = slots[6];
 						if (winner == 1) {
 							alert('Player wins at line 3!');
+							return winner;
 						} else if (winner == 2) {
 							alert('ROBOT wins at line 3!');
+							return winner;
 						}
 					}
+					return winner;
 				}
 
 				function checkColumnWin(){
@@ -120,24 +135,31 @@
 						winner = slots[0];
 						if (winner == 1) {
 							alert('Player wins at column 1!');
+							return winner;
 						} else if (winner == 2) {
 							alert('ROBOT wins at column 1!');
+							return winner;
 						}
 					} else if (slots[1] == slots[4] && slots[4] == slots[7]) {
 						winner = slots[1];
 						if (winner == 1) {
 							alert('Player wins at column 2!');
+							return winner;
 						} else if (winner == 2) {
 							alert('ROBOT wins at column 2!');
+							return winner;
 						}
 					} else if (slots[2] == slots[5] && slots[5] == slots[8]) {
 						winner = slots[2];
 						if (winner == 1) {
 							alert('Player wins at column 3!');
+							return winner;
 						} else if (winner == 2) {
 							alert('ROBOT wins at column 3!');
+							return winner;
 						}
 					}
+					return winner;
 				}
 
 				function checkDiagonalWin(){
@@ -146,17 +168,22 @@
 						winner = slots[0];
 						if (winner == 1) {
 							alert('Player wins at main diagonal from upper left to bottom right!');
+							return winner;
 						} else if (winner == 2) {
 							alert('ROBOT wins at main diagonal from upper left to bottom right!');
+							return winner;
 						}
 					} else if (slots[2] == slots[4] && slots[4] == slots[6]) {
 						winner = slots[2];
 						if (winner == 1) {
 							alert('Player wins at secondary diagonal from upper right to bottom left!');
+							return winner;
 						} else if (winner == 2) {
 							alert('ROBOT wins at secondary diagonal from upper right to bottom left!');
+							return winner;
 						}
 					}
+					return winner;
 				}
 
 			});
