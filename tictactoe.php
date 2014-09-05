@@ -1,16 +1,7 @@
 <html>
 	<head>
-		<style type="text/css">
-			.casa {
-				border: 1px solid black;
-				width: 132px;
-				height: 132px;
-			}
-			.content {
-				padding-top: 20px;
-			}
-		</style>
 		<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
 	</head>
 	<body>
 		<div align="center" class="content">
@@ -48,6 +39,8 @@
 						slots[i] = 1;
 						$(this).html('<img src="x-128.png">');
 						$('.activitylog').append('<p>Player choice: slot '+i+'</p>');
+
+						$(this).off('click');   // Disable this slot, because it is already filled.
 					} else {
 						alert('Illegal!!!');
 						return;
@@ -65,9 +58,9 @@
 					if ($.inArray(0,slots) != -1) {
 						var index = Math.floor((Math.random() * 9));
 						console.log('first index is = '+index);
+
 						while(true){
 							if (slots[index] == 0) {
-
 								slots[index] = 2;
 								break;
 								// return index;
@@ -76,10 +69,12 @@
 								if (index == 9) index=0;
 							}
 						}
+
 						console.log('random = '+index);
 						console.log('slots = '+slots);
 						$('#casa'+index).html('<img src="o-128.jpg">');
 						$('.activitylog').append('<p>Robot choice: slot '+index+'</p>');
+						$('#casa'+index).off('click');
 					} else {
 						console.log('no more space');
 					}
@@ -90,9 +85,15 @@
 					win += checkRowWin();
 					win += checkColumnWin();
 					win +=checkDiagonalWin();
+          
 					if ((win == 0) && ($.inArray(0,slots) == -1)) {
 						$('.activitylog').append('<p>IT IS A DRAW!</p>');
-					}
+					} else if (win != 0) {
+            for (var index = 0; index < slots.length; index++) {
+              $('#casa'+index).off('click');
+              // console.log('off with '+index);
+            }
+          }
 					return win;
 				}
 
