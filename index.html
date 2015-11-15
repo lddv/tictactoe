@@ -24,8 +24,10 @@
 			</table>
 		</div>
 
-		<div class="activitylog">
+		<div class="log">
+			<button type="button" name="reset" id="reset">Restart game!</button>
 			<p>Let the game begin!</p>
+			<div class="activitylog"></div>
 		</div>
 
 		<script type="text/javascript">
@@ -85,7 +87,7 @@
 					win += checkRowWin();
 					win += checkColumnWin();
 					win +=checkDiagonalWin();
-          
+
 					if ((win == 0) && ($.inArray(0,slots) == -1)) {
 						$('.activitylog').append('<p>IT IS A DRAW!</p>');
 					} else if (win != 0) {
@@ -186,6 +188,33 @@
 					}
 					return winner;
 				}
+
+				$('#reset').on('click', function(){
+					slots = [0,0,0,0,0,0,0,0,0];
+
+					$('.casa').html('');
+					$('.activitylog').html('');
+
+					$('.casa').on('click', function(){
+						var i = $(this).attr('id').substring(4,5);
+						if (slots[i] == 0) {
+							// OK;
+							slots[i] = 1;
+							$(this).html('<img src="x-128.png">');
+							$('.activitylog').append('<p>Player choice: slot '+i+'</p>');
+
+							$(this).off('click');   // Disable this slot, because it is already filled.
+						} else {
+							alert('Illegal!!!');
+							return;
+						}
+
+						if (checkWin() == 0) {
+							robotRandomPlay();
+							checkWin();
+						}
+					});
+				});
 
 			});
 		</script>
