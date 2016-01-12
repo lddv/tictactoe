@@ -69,7 +69,7 @@ $(document).ready(function(){
 
   function checkRowWin(){
     var winner = 0;
-    if (slots[0] === slots[1] && slots[1] === slots[2]) {
+    if (slots[0] === slots[1] && slots[1] === slots[2] && slots[0] !== 0) {
       winner = slots[0];
       if (winner === 1) {
         alert('Player wins at line 1!');
@@ -78,7 +78,7 @@ $(document).ready(function(){
         alert('ROBOT wins at line 1!');
         return winner;
       }
-    } else if (slots[3] === slots[4] && slots[4] === slots[5]) {
+    } else if (slots[3] === slots[4] && slots[4] === slots[5] && slots[3] !== 0) {
       winner = slots[3];
       if (winner === 1) {
         alert('Player wins at line 2!');
@@ -87,7 +87,7 @@ $(document).ready(function(){
         alert('ROBOT wins at line 2!');
         return winner;
       }
-    } else if (slots[6] === slots[7] && slots[7] === slots[8]) {
+    } else if (slots[6] === slots[7] && slots[7] === slots[8] && slots[6] !== 0) {
       winner = slots[6];
       if (winner === 1) {
         alert('Player wins at line 3!');
